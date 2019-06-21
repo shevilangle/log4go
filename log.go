@@ -30,10 +30,11 @@ type Record struct {
 	code  string
 	info  string
 	level int
+	tag   string
 }
 
 func (r *Record) String() string {
-	return fmt.Sprintf("%s [%s] <%s> %s\n", r.time, LEVEL_FLAGS[r.level], r.code, r.info)
+	return fmt.Sprintf("[%s] %s [%s] <%s> %s\n", r.tag, r.time, LEVEL_FLAGS[r.level], r.code, r.info)
 }
 
 type Writer interface {
@@ -58,6 +59,7 @@ type Logger struct {
 	lastTimeStr string
 	c           chan bool
 	layout      string
+	tag         string
 }
 
 func NewLogger() *Logger {
@@ -157,6 +159,7 @@ func (l *Logger) deliverRecordToWriter(level int, format string, args ...interfa
 	r.code = code
 	r.time = l.lastTimeStr
 	r.level = level
+	r.tag  = l.tag
 
 	l.tunnel <- r
 }
@@ -229,6 +232,10 @@ var (
 	logger_default *Logger
 	takeup         = false
 )
+
+func SetTag(tag string) {
+	logger_default.tag = tag
+}
 
 func SetLevel(lvl int) {
 	logger_default.level = lvl

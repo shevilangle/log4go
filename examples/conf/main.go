@@ -1,7 +1,7 @@
 package main
 
 import (
-	log "log4go"
+	log "github.com/shevilangle/log4go"
 )
 
 func main() {
@@ -11,9 +11,10 @@ func main() {
 	defer log.Close()
 
 	var name = "skoo"
-	log.Debug("log4go by %s", name)
-	log.Info("log4go by %s", name)
-	log.Warn("log4go by %s", name)
-	log.Error("log4go by %s", name)
-	log.Fatal("log4go by %s", name)
+	index := 0
+	log.Debug("log4go %d by %s", index, name)
+	log.Info("log4go %d by %s", index, name)
+	log.Warn("log4go %d by %s", index, name)
+	log.Error("log4go %d by %s", index, name)
+	log.Fatal("log4go %d by %s", index, name)
 }

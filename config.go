@@ -16,10 +16,16 @@ type ConfConsoleWriter struct {
 	Color bool `json:"Color"`
 }
 
+type ConfTag struct {
+	On    bool   `json:"On"`
+	Tag   string `json:"Tag"`
+}
+
 type LogConfig struct {
 	Level string            `json:"LogLevel"`
 	FW    ConfFileWriter    `json:"FileWriter"`
 	CW    ConfConsoleWriter `json:"ConsoleWriter"`
+	TAG   ConfTag           `json:"ConfTag"`
 }
 
 func SetupLogWithConf(file string) (err error) {
@@ -61,6 +67,9 @@ func SetupLogWithConf(file string) (err error) {
 
 	default:
 		err = errors.New("Invalid log level")
+	}
+	if lc.TAG.On {
+		SetTag(lc.TAG.Tag)
 	}
 	return
 }

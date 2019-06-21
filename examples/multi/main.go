@@ -1,7 +1,7 @@
 package main
 
 import (
-	log "log4go"
+	log "github.com/shevilangle/log4go"
 )
 
 func SetLog() {

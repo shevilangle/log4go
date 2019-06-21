@@ -2,11 +2,17 @@
     "LogLevel" : "info",
 
     "FileWriter" : {
-        "LogPath" : "/tmp/access-%Y%M%D.log",
+        "LogPath" : "logs/log-%Y%M%D.log",
         "On": true
     },
 
     "ConsoleWriter" : {
-        "On" : true
+        "On" : true,
+        "Color" : true
+    },
+
+    "ConfTag" : {
+        "On" : true,
+        "Tag" : "lic"
     }
 }
